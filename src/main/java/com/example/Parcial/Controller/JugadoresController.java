@@ -1,6 +1,7 @@
 package com.example.Parcial.Controller;
 
 import com.example.Parcial.Model.Jugadores;
+import com.example.Parcial.Repository.EstadisticasRepository;
 import com.example.Parcial.Repository.JugadoresRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,5 +40,20 @@ public class JugadoresController {
     public void delete(@PathVariable Integer id) {
         repository.deleteById(id);
     }
+
+    @GetMapping("/goles/{goles}")
+    public List<Jugadores> getJugadoresConMasDeXGoles(@PathVariable int goles) {
+        return repository.findJugadoresConMasDeXGoles(goles);
+    }
+
+    @Autowired
+    private EstadisticasRepository estadisticasRepository;
+
+    @GetMapping("/total_goles/{idEquipo}")
+    public Integer getTotalGolesPorEquipo(@PathVariable int idEquipo) {
+        return estadisticasRepository.obtenerTotalGolesPorEquipo(idEquipo);
+    }
+
+
 }
 

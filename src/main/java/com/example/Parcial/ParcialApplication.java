@@ -11,7 +11,7 @@ public class ParcialApplication {
 		loadEnv();
 		SpringApplication.run(ParcialApplication.class, args);
 	}
-//
+
 	public static void loadEnv() {
 		Dotenv dotenv = Dotenv.load();
 		System.setProperty("DB_URL", dotenv.get("DB_URL"));

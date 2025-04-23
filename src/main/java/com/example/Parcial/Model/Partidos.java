@@ -1,5 +1,6 @@
 package com.example.Parcial.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -43,8 +44,12 @@ public class Partidos {
 
     @ManyToOne
     @JoinColumn(name = "equipo_visita")
+    @JsonIgnoreProperties("equipo_visita")
     private Equipo equipoVisita;
 
     @OneToMany(mappedBy = "partido", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("partido")
     private List<Estadisticas> estadisticas;
+
+
 }

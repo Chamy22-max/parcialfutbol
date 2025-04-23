@@ -1,5 +1,6 @@
 package com.example.Parcial.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,9 +33,11 @@ public class Equipo {
     private LocalDate fundacion;
 
     @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("equipo")
     private List<Jugadores> jugadores;
 
     @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("equipo")
     private List<Entrenadores> entrenadores;
 
 }
